@@ -54,7 +54,7 @@ def get_access_token() -> str:
     payload = resp.json()
     _ACCESS_TOKEN = payload.get("access_token")
     expires_in = payload.get("expires_in", 3600)
-    _ACCESS_TOKEN_EXPIRES_AT = now + expires_in - 30  # margen de seguridad
+    _ACCESS_TOKEN_EXPIRES_AT = now + expires_in - 30
 
     return _ACCESS_TOKEN or ""
 
@@ -121,7 +121,7 @@ def validate_tracks_batch(track_ids: List[str]) -> Dict[str, Dict[str, Any]]:
                     "id": track_info["id"],
                     "name": track_info["name"],
                 }
-        except Exception:  # noqa: BLE001
+        except Exception:
             # Si hay error (404, 401, etc.), simplemente no agregamos el track
             continue
     return valid_tracks
@@ -141,7 +141,7 @@ def validate_artists_batch(artist_ids: List[str]) -> Dict[str, Dict[str, Any]]:
                     "id": artist_info["id"],
                     "name": artist_info["name"],
                 }
-        except Exception:  # noqa: BLE001
+        except Exception:
             # Si hay error (404, 401, etc.), simplemente no agregamos el artista        
             continue
     return valid_artists
